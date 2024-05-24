@@ -1,13 +1,15 @@
 import '../assets/css/main.css';
-
+import { useSelector } from 'react-redux';
+import { RootState } from '../app/store';
 const User: React.FC = () => {
+	const { firstName, lastName } = useSelector((state: RootState) => state.auth);
 	return (
 		<main className="main bg-dark">
 			<div className="header">
 				<h1>
 					Welcome back
 					<br />
-					Tony Jarvis!
+					debut {firstName} {lastName} fin
 				</h1>
 				<button className="edit-button">Edit Name</button>
 			</div>
