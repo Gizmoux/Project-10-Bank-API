@@ -1,5 +1,5 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
-
+import axios from 'axios';
 export interface AuthState {
 	token: string;
 	firstName: string;
@@ -22,7 +22,7 @@ export const authSlice = createSlice({
 		clearToken: state => {
 			state.token = '';
 		},
-		setUserInfo: (
+		setUser: (
 			state,
 			action: PayloadAction<{ firstName: string; lastName: string }>
 		) => {
@@ -33,6 +33,31 @@ export const authSlice = createSlice({
 });
 
 // Action creators are generated for each case reducer function
-export const { setToken, clearToken, setUserInfo } = authSlice.actions;
+export const { setToken, clearToken, setUser } = authSlice.actions;
 
 export default authSlice.reducer;
+export const updateUserProfile =
+	(firstName: string, lastName: string) => async (dispatch, getState) => {
+		try {
+			const token = getState().auth.token;
+			if (!token) {
+				console.log('No token found in state');
+				return;
+			}
+
+			const response = await axios.put(
+				'http://localhost:3001/api/v1/user/profile',
+				{ firstName, lastName },
+				{
+					headers: {
+						Authorization: `Bearer ${token}`,
+					},
+				}
+			);
+
+			console.log('Profile updated successfully:', response.data);
+			dispatch(setUser({ firstName, lastName }));
+		} catch (error) {
+			console.error('Error updating profile:', error);
+		}
+	};
