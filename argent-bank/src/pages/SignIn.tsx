@@ -1,7 +1,7 @@
 import '../assets/css/main.css';
 import { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { setToken, setUserInfo } from '../app/authSlice';
+import { setToken, setUser } from '../app/authSlice';
 import { useNavigate } from 'react-router-dom';
 import { RootState } from '../app/store';
 const SignIn: React.FC = () => {
@@ -30,12 +30,11 @@ const SignIn: React.FC = () => {
 				dispatch(setToken(data.body.token)); // Assure-toi que `data.token` correspond au token retourné par ton backend
 				console.log('token', data.body.token);
 				dispatch(
-					setUserInfo({
+					setUser({
 						firstName: data.body.firstName,
 						lastName: data.body.lastName,
 					})
-				); // Assure-toi que `data.token` correspond au token retourné par ton backend
-				console.log('firstname', data.body.firstname);
+				);
 			}
 		} catch (error) {
 			console.error('error', error);
