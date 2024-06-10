@@ -10,28 +10,34 @@ const User: React.FC = () => {
 	const [isSaving, setIsSaving] = useState(false);
 	const dispatch = useDispatch();
 
-	const handleChangeFirstName = event => {
+	const handleChangeFirstName = (event: Event) => {
 		setEditFirstName(event.target.value);
-		console.log(event.target.value);
+		// console.log(event.target.value);
 	};
-	const handleChangeLastName = event => {
+	const handleChangeLastName = (event: Event) => {
 		setEditLastName(event.target.value);
-		console.log(event.target.value);
+		// console.log(event.target.value);
 	};
 	const handleEdit = () => {
 		setIsEditing(true);
 	};
 	const handleSave = async () => {
-		setIsSaving(true);
 		await dispatch(updateUserProfile(editFirstName, editLastName));
+		setIsSaving(true);
 		setIsSaving(false);
 		setIsEditing(false);
+	};
+	const handleCancel = () => {
+		setIsEditing(false);
+		setEditFirstName(firstName);
+		setEditLastName(lastName);
 	};
 	return (
 		<main className="main bg-dark">
 			{isEditing ? (
 				<div className="header">
 					<h1>Welcome back</h1>
+
 					<input
 						type="text"
 						placeholder="Tony"
@@ -47,12 +53,16 @@ const User: React.FC = () => {
 					<button className="save-button" onClick={handleSave}>
 						Save
 					</button>
-					<button className="cancel-button">Cancel</button>
+					<button className="cancel-button" onClick={handleCancel}>
+						Cancel
+					</button>
 				</div>
 			) : (
 				<div className="header">
 					<h1>Welcome back</h1>
-
+					<h1>
+						{editFirstName} {editLastName}
+					</h1>
 					<button className="edit-button" onClick={handleEdit}>
 						Edit Name
 					</button>

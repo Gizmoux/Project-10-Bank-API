@@ -27,7 +27,7 @@ const SignIn: React.FC = () => {
 			console.log('data', data);
 
 			if (response.ok) {
-				dispatch(setToken(data.body.token)); // Assure-toi que `data.token` correspond au token retourné par ton backend
+				dispatch(setToken(data.body.token));
 				console.log('token', data.body.token);
 				dispatch(
 					setUser({
@@ -42,16 +42,17 @@ const SignIn: React.FC = () => {
 	};
 	useEffect(() => {
 		if (token) {
-			console.log('Token present, navigating to /profile');
+			console.log('Token ok, je vais sur /profile');
 			navigate('/profile');
 		} else {
-			console.log('No token found, staying on SignIn page');
+			console.log('pas de token, je reste sur la page');
 		}
 	}, [token, navigate]);
 	return (
 		<main className="main bg-dark">
 			<section className="sign-in-content">
 				<i className="fa fa-user-circle sign-in-icon"></i>
+
 				<h1>Sign In</h1>
 				<form onSubmit={handleSubmit}>
 					<div className="input-wrapper">
