@@ -7,6 +7,7 @@ import { RootState } from '../app/store';
 const SignIn: React.FC = () => {
 	const [email, setEmail] = useState('');
 	const [password, setPassword] = useState('');
+	const [isAuthenticated, setIsAuthenticated] = useState(false);
 	const dispatch = useDispatch();
 	const navigate = useNavigate();
 	const token = useSelector((state: RootState) => state.auth.token);
@@ -25,9 +26,13 @@ const SignIn: React.FC = () => {
 			});
 			const data = await response.json();
 			console.log('data', data);
+			console.log('data.body', data.body);
 
 			if (response.ok) {
 				dispatch(setToken(data.body.token));
+				setIsAuthenticated(true);
+				console.log('isAuthenticated1', isAuthenticated);
+
 				console.log('token', data.body.token);
 				dispatch(
 					setUser({
@@ -41,13 +46,15 @@ const SignIn: React.FC = () => {
 		}
 	};
 	useEffect(() => {
-		if (token) {
+		if (token && isAuthenticated) {
 			console.log('Token ok, je vais sur /profile');
+			console.log('isAuthenticated2', isAuthenticated);
+
 			navigate('/profile');
 		} else {
 			console.log('pas de token, je reste sur la page');
 		}
-	}, [token, navigate]);
+	}, [isAuthenticated, token, navigate]);
 	return (
 		<main className="main bg-dark">
 			<section className="sign-in-content">

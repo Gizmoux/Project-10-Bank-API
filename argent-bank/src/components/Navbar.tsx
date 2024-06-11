@@ -9,6 +9,7 @@ const NavBar: React.FC = () => {
 	const token = useSelector((state: RootState) => state.auth.token);
 	const dispatch = useDispatch();
 	const navigate = useNavigate();
+	const { firstName } = useSelector(state => state.auth);
 
 	const handleSignOut = () => {
 		localStorage.removeItem('token');
@@ -27,10 +28,17 @@ const NavBar: React.FC = () => {
 			</Link>
 			<div>
 				{token ? (
-					<button className="main-nav-item" onClick={handleSignOut}>
-						<i className="fa fa-sign-out"></i>
-						Sign Out
-					</button>
+					<div className="navbar-container">
+						<div className="navbar-user">
+							<i className="fa-solid fa-user"></i>
+							<h2>{firstName}</h2>
+						</div>
+
+						<button className="main-nav-item" onClick={handleSignOut}>
+							<i className="fa fa-sign-out"></i>
+							Sign Out
+						</button>
+					</div>
 				) : (
 					<Link className="main-nav-item" to="/login">
 						<i className="fa fa-user-circle"></i>
