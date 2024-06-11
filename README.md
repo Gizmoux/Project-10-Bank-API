@@ -30,9 +30,11 @@ mongo --version
 
 ```bash
 # Install dependencies
+
 npm install
 
 # Start local dev server
+nvm use 16
 npm run dev:server
 
 # Populate database with two users
