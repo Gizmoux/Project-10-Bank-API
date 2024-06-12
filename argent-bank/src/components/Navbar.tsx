@@ -14,6 +14,8 @@ const NavBar: React.FC = () => {
 	const handleSignOut = () => {
 		localStorage.removeItem('token');
 		dispatch(setToken(''));
+		console.log('token sign out', token);
+
 		navigate('/');
 	};
 	return (

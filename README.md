@@ -41,6 +41,14 @@ npm run dev:server
 npm run populate-db
 ```
 
+# Shortcut Copy/Past
+
+nvm use 16
+npm run dev:server
+npm run populate-db
+cd argent-bank
+npm run dev
+
 Your server should now be running at http://locahost:3001 and you will now have two users in your MongoDB database!
 
 ## Populated Database Data

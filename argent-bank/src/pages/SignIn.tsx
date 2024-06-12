@@ -32,7 +32,6 @@ const SignIn: React.FC = () => {
 				dispatch(setToken(data.body.token));
 				setIsAuthenticated(true);
 				console.log('isAuthenticated1', isAuthenticated);
-
 				console.log('token', data.body.token);
 				dispatch(
 					setUser({
