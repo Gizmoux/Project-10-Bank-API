@@ -3,7 +3,7 @@ import { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { updateUserProfile } from '../app/authSlice';
 const User: React.FC = () => {
-	const { token, firstName, lastName } = useSelector(state => state.auth);
+	const { firstName, lastName } = useSelector(state => state.auth);
 	const [editFirstName, setEditFirstName] = useState('');
 	const [editLastName, setEditLastName] = useState('');
 	const [isEditing, setIsEditing] = useState(false);
