@@ -3,21 +3,27 @@ import logo from '../assets/img/argentBankLogo.png';
 import { Link, useNavigate } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { RootState } from '../app/store';
-import { setToken } from '../app/authSlice';
+import { setToken, clearUser } from '../app/authSlice';
 
 const NavBar: React.FC = () => {
-	const token = useSelector((state: RootState) => state.auth.token);
 	const dispatch = useDispatch();
 	const navigate = useNavigate();
-	const { firstName } = useSelector(state => state.auth);
+	const token = useSelector((state: RootState) => state.auth.token);
+	const firstName = useSelector((state: RootState) => state.auth.firstName);
+	const lastName = useSelector((state: RootState) => state.auth.lastName);
+	console.log('FirstName in NavBar:', firstName);
 
 	const handleSignOut = () => {
 		localStorage.removeItem('token');
 		dispatch(setToken(''));
-		console.log('token sign out', token);
-
 		navigate('/');
+		dispatch(clearUser());
+		dispatch(setToken(''));
+		console.log('token sign out', token);
+		console.log('Token removed from localStorage');
+		console.log('firstname lastname in Signout', firstName, lastName);
 	};
+
 	return (
 		<nav className="main-nav">
 			<Link className="main-nav-logo" to="/">
