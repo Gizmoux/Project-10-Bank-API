@@ -42,29 +42,29 @@ And for the API model that you will be proposing for transactitons, the wirefram
 
 ## Installation :
 
-### Procédure d'installation :
+### Installation Procedure:
 
-Cloner le repository:
+Clone the repository:
 
 - git clone https://github.com/Gizmoux/Project-10-Bank-API.git
 
-### Installation et lancement du Back-end :
+### Installation and launching of the Back-end:
 
-1. Aller dans le dossier PROJETCT-10-BANK-API
-
-2. Vérifier la version de Node:
+1. Go to the PROJETCT-10-BANK-API folder
+   - cd PROJETCT-10-BANK-API
+2. Check Node version:
 
    - `node --version`
 
-3. Vérifier la version de MongoDB
+3. Check MongoDB version:
 
    - `mongo --version`
 
-4. Installer toutes les dépendances pour le back-end:
+4. Install all dependencies for the back-end:
 
    - `npm install` ou `yarn`
 
-5. Lancer le back-end avec Node 16 (nvm) et créer 2 utilisateurs dans la base de données:
+5. Launch the back-end with Node 16 (nvm) and create 2 users in the database:
 
 ```bash
 nvm use 16
@@ -72,7 +72,7 @@ npm run dev:server
 npm run populate-db
 ```
 
-## Utilisateurs en base de données:
+## Users in database:
 
 ### Tony Stark
 
@@ -89,22 +89,18 @@ npm run populate-db
 - Email: `steve@rogers.com`,
 - Password: `password456`
 
-## API Documentation
+### Installation and launch of the front-end:
 
-Pour en apprendre plus sur le fonctionnement de l'API, une fois l'environnement local lancé, visitez: http://localhost:3001/api-docs
-
-### Installation et lancement du front-end :
-
-1. Aller dans le dossier argent-bank
+1. Go to the argent-bank folder:
 
    - cd argent-bank
 
-2. Installer toutes les dépendances et lancer le frontend:
+2. Install all dependencies and launch the frontend:
 
 ```bash
 cd argent-bank
 npm run dev
 ```
 
-Le front-end sera lancé à l'URL:
+The front-end will be launched at the URL:
 `http://localhost:5173/`
