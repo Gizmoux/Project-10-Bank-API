@@ -4,11 +4,11 @@ module.exports.createUser = async (req, res) => {
 	let response = {};
 
 	try {
-		console.log('Request body:', req.body);
 		const responseFromService = await userService.createUser(req.body);
 		response.status = 200;
 		response.message = 'User successfully created';
 		response.body = responseFromService;
+		console.log('Request body:', req.body);
 	} catch (error) {
 		console.error('Something went wrong in userController.js', error);
 		response.status = 400;
