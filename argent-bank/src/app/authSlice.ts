@@ -1,12 +1,15 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 import axios from 'axios';
+
 export interface AuthState {
+	user: string;
 	token: string;
 	firstName: string;
 	lastName: string;
 }
 
 const initialState: AuthState = {
+	user: '',
 	token: '',
 	firstName: '',
 	lastName: '',
@@ -29,11 +32,16 @@ export const authSlice = createSlice({
 			state.firstName = action.payload.firstName;
 			state.lastName = action.payload.lastName;
 		},
+		clearUser: state => {
+			state.firstName = '';
+			state.lastName = '';
+			state.token = '';
+		},
 	},
 });
 
 // Action creators are generated for each case reducer function
-export const { setToken, clearToken, setUser } = authSlice.actions;
+export const { setToken, clearToken, setUser, clearUser } = authSlice.actions;
 
 export default authSlice.reducer;
 export const updateUserProfile =
