@@ -1,12 +1,13 @@
 import '../assets/css/main.css';
 import { useState, useEffect } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import { useAppDispatch } from '../app/hooks';
+import { useSelector } from 'react-redux';
 import { updateUserProfile, setUser } from '../app/authSlice';
 import axios from 'axios';
 import { RootState } from '../app/store';
 
 const User: React.FC = () => {
-	const dispatch = useDispatch();
+	const dispatch = useAppDispatch();
 	const { firstName, lastName } = useSelector((state: RootState) => state.auth);
 	const [editFirstName, setEditFirstName] = useState(firstName);
 	const [editLastName, setEditLastName] = useState(lastName);
@@ -24,7 +25,6 @@ const User: React.FC = () => {
 
 				const response = await axios.post(
 					'http://localhost:3001/api/v1/user/profile',
-					{},
 					{
 						headers: {
 							Authorization: `Bearer ${token}`,
