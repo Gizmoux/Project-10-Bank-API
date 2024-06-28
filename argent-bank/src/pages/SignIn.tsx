@@ -13,32 +13,49 @@ const SignIn: React.FC = () => {
 	const token = useSelector((state: RootState) => state.auth.token);
 	const handleSubmit = async (event: React.FormEvent) => {
 		event.preventDefault();
-		console.log(email);
-		console.log(password);
-
 		try {
-			const response = await fetch('http://localhost:3001/api/v1/user/login', {
-				method: 'POST',
-				headers: {
-					'Content-Type': 'application/json',
-				},
-				body: JSON.stringify({ email, password }),
-			});
-			const data = await response.json();
-			console.log('data', data);
-			console.log('data.body', data.body);
+			// Première requête : Login
+			const loginResponse = await fetch(
+				'http://localhost:3001/api/v1/user/login',
+				{
+					method: 'POST',
+					headers: {
+						'Content-Type': 'application/json',
+					},
+					body: JSON.stringify({ email, password }),
+				}
+			);
+			const loginData = await loginResponse.json();
 
-			if (response.ok) {
-				dispatch(setToken(data.body.token));
+			if (loginResponse.ok) {
+				const token = loginData.body.token;
+				dispatch(setToken(token));
 				setIsAuthenticated(true);
-				console.log('isAuthenticated1', isAuthenticated);
-				console.log('token', data.body.token);
-				dispatch(
-					setUser({
-						firstName: data.body.firstName,
-						lastName: data.body.lastName,
-					})
+
+				// Deuxième requête : Obtenir le profil
+				const profileResponse = await fetch(
+					'http://localhost:3001/api/v1/user/profile',
+					{
+						method: 'POST',
+						headers: {
+							Authorization: `Bearer ${token}`,
+							'Content-Type': 'application/json',
+						},
+					}
 				);
+				const profileData = await profileResponse.json();
+
+				if (profileResponse.ok) {
+					dispatch(
+						setUser({
+							firstName: profileData.body.firstName,
+							lastName: profileData.body.lastName,
+						})
+					);
+					console.log('Profile data:', profileData.body);
+				}
+
+				navigate('/profile');
 			}
 		} catch (error) {
 			console.error('error', error);
@@ -51,7 +68,7 @@ const SignIn: React.FC = () => {
 
 			navigate('/profile');
 		} else {
-			console.log('pas de token, je reste sur la page');
+			console.log('Pas de token, je reste sur la page');
 		}
 	}, [isAuthenticated, token, navigate]);
 	return (
@@ -65,7 +82,7 @@ const SignIn: React.FC = () => {
 						<label htmlFor="username">Username</label>
 						<input
 							type="email"
-							id="username"
+							id="email"
 							value={email}
 							onChange={e => setEmail(e.target.value)}
 						/>
