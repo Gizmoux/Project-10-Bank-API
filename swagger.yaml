@@ -9,10 +9,8 @@ basePath: /api/v1
 schemes:
   - http
 paths:
-  /transactions:
+  /transaction:
     get:
-      security:
-        - Bearer: []
       tags:
         - Transactions Module
       summary: Get all transactions
@@ -22,17 +20,7 @@ paths:
           name: Authorization
           description: Attach Bearer JWT token
           required: true
-        - in: query
-        name: month
-        type: integer
-        description: Filter by month (1-12)
-        - in: query
-        name: year
-        type: integer
-        description: Filter by year
-        - in: query
-        name: accountId
-        type: string
+          schema:
       produces:
         - application/json
       responses:
@@ -40,7 +28,7 @@ paths:
           description: Successful response
           schema:
             $ref: '#/definitions/TransactionList'
-        '401':
+        '400':
           description: Unauthorized
         '500':
           description: Internal Server Error
@@ -72,7 +60,6 @@ paths:
           description: Transaction not found
         '500':
           description: Internal Server Error
-
     put:
       tags:
         - Transactions Module
@@ -108,7 +95,6 @@ paths:
           description: Transaction not found
         '500':
           description: Internal Server Error
-
     patch:
       tags:
         - Transactions Module
@@ -136,6 +122,31 @@ paths:
           description: Transaction notes updated successfully
           schema:
             $ref: '#/definitions/Transaction'
+        '401':
+          description: Unauthorized
+        '404':
+          description: Transaction not found
+        '500':
+          description: Internal Server Error
+    delete:
+      tags:
+        - Transactions Module
+      summary: Delete a transaction
+      description: Delete an existing transaction for the authenticated user
+      parameters:
+        - in: header
+          name: Authorization
+          description: Attach Bearer JWT token
+          required: true
+          type: string
+        - in: path
+          name: transactionId
+          description: ID of the transaction
+          required: true
+          type: string
+      responses:
+        '200':
+          description: Transaction deleted successfully
         '401':
           description: Unauthorized
         '404':
@@ -300,7 +311,7 @@ definitions:
   Transaction:
     type: object
     properties:
-      id: 
+      id:
         type: string
       date:
         type: string
@@ -311,5 +322,25 @@ definitions:
         type: number
       category:
         type: string
+      notes:
+        type: string
+  NewTransaction:
+    type: object
+    required:
+      - date
+      - description
+      - amount
+      - category
+    properties:
+      date:
+        type: string
+        format: date
+      description:
+        type: string
+      amount:
+        type: number
+      category:
+        type: string
+        enum: [food, entertainment, utilities, housing, transportation, other]
       notes:
         type: string
