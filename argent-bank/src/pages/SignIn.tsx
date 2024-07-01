@@ -65,7 +65,6 @@ const SignIn: React.FC = () => {
 		if (token && isAuthenticated) {
 			console.log('Token ok, je vais sur /profile');
 			console.log('isAuthenticated2', isAuthenticated);
-
 			navigate('/profile');
 		} else {
 			console.log('Pas de token, je reste sur la page');
