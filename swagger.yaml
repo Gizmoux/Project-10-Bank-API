@@ -82,8 +82,6 @@ paths:
           required: true
           schema:
             type: string
-            enum:
-              [food, entertainment, utilities, housing, transportation, other]
       responses:
         '200':
           description: Transaction category updated successfully
@@ -341,6 +339,5 @@ definitions:
         type: number
       category:
         type: string
-        enum: [food, entertainment, utilities, housing, transportation, other]
       notes:
         type: string
