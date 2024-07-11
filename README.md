@@ -1,4 +1,4 @@
-# Project #10 - Argent Bank API
+# Project #13 - Argent Bank API
 
 This codebase contains the code needed to run the backend for Argent Bank.
 
@@ -51,7 +51,9 @@ Clone the repository:
 ### Installation and launching of the Back-end:
 
 1. Go to the PROJETCT-10-BANK-API folder
+
    - cd PROJETCT-10-BANK-API
+
 2. Check Node version:
 
    - `node --version`
@@ -62,7 +64,7 @@ Clone the repository:
 
 4. Install all dependencies for the back-end:
 
-   - `npm install` ou `yarn`
+   - `npm install` or `yarn`
 
 5. Launch the back-end with Node 16 (nvm) and create 2 users in the database:
 
@@ -80,7 +82,8 @@ npm run populate-db
 - Last Name: `Stark`
 - Email: `tony@stark.com`
 - Password: `password123`
-- token : eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY2NDcwYzEzODA5NGE1MDdhNmZkNWNjYSIsImlhdCI6MTcxODAyNTMwMiwiZXhwIjoxNzE4MTExNzAyfQ.iNuRV4KWPS4G2Ji47ObpAla5jc35MRk7qNtzKWn2eLE
+- token : eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY2OGZlMWI5NWU2YWE5MmEzYzExNzliMCIsImlhdCI6MTcyMDcwNjA3MCwiZXhwIjoxNzIwNzkyNDcwfQ.wKsUi9cTGNKdaUo6RLfDE0q5ho6LZvGFIrENTLelRnY
+- Méthode POST sur postman : http://localhost:3001/api/v1/user/login avec le bearer token que l'on a récupéré depuis la route /login
 
 ### Steve Rogers
 
@@ -89,7 +92,7 @@ npm run populate-db
 - Email: `steve@rogers.com`,
 - Password: `password456`
 
-### Installation and launch of the front-end:
+### Installation and launch of the front-end in a new terminal:
 
 1. Go to the argent-bank folder:
 
