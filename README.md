@@ -82,7 +82,7 @@ npm run populate-db
 - Last Name: `Stark`
 - Email: `tony@stark.com`
 - Password: `password123`
-- token : eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY2OGZlMWI5NWU2YWE5MmEzYzExNzliMCIsImlhdCI6MTcyMDcwNjA3MCwiZXhwIjoxNzIwNzkyNDcwfQ.wKsUi9cTGNKdaUo6RLfDE0q5ho6LZvGFIrENTLelRnY
+- token : eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY2OGZlMWI5NWU2YWE5MmEzYzExNzliMCIsImlhdCI6MTcyMjQzMTQxMywiZXhwIjoxNzIyNTE3ODEzfQ.MTFw0AwZWFaZbPsnQooMn9bnSGAu9jgNXmwwrByks3w
 - Méthode POST sur postman : http://localhost:3001/api/v1/user/login avec le bearer token que l'on a récupéré depuis la route /login
 
 ### Steve Rogers
