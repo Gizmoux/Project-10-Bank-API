@@ -63,8 +63,8 @@ const SignIn: React.FC = () => {
 	};
 	useEffect(() => {
 		if (token && isAuthenticated) {
-			console.log('Token ok, je vais sur /profile');
-			console.log('isAuthenticated2', isAuthenticated);
+			console.log('Token correct, je vais sur /profile');
+			console.log('isAuthenticated', isAuthenticated);
 			navigate('/profile');
 		} else {
 			console.log('Pas de token, je reste sur la page');
@@ -99,7 +99,6 @@ const SignIn: React.FC = () => {
 						<input type="checkbox" id="remember-me" />
 						<label htmlFor="remember-me">Remember me</label>
 					</div>
-					{/* <a className="sign-in-button">Sign In</a> */}
 					<button className="sign-in-button" type="submit">
 						Sign In
 					</button>
