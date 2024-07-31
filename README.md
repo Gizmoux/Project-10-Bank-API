@@ -50,9 +50,9 @@ Clone the repository:
 
 ### Installation and launching of the Back-end:
 
-1. Go to the PROJETCT-10-BANK-API folder
+1. Go to the Argent-bank folder
 
-   - cd PROJETCT-10-BANK-API
+   - cd Argent-bank
 
 2. Check Node version:
 
