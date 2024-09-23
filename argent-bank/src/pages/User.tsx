@@ -22,6 +22,7 @@ const User: React.FC = () => {
 				if (!token) {
 					// Rediriger vers la page de connexion si pas de token
 					navigate('/login');
+
 					return;
 				}
 
