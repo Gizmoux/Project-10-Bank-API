@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 import '../assets/css/main.css';
 import { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
@@ -7,7 +8,7 @@ import { RootState } from '../app/store';
 const SignIn: React.FC = () => {
 	const [email, setEmail] = useState('');
 	const [password, setPassword] = useState('');
-	const [isAuthenticated, setIsAuthenticated] = useState(false);
+	const [isAuthenticated, setIsAuthenticated] = useState<boolean>(false);
 	const dispatch = useDispatch();
 	const navigate = useNavigate();
 	const token = useSelector((state: RootState) => state.auth.token);
@@ -30,6 +31,7 @@ const SignIn: React.FC = () => {
 			if (loginResponse.ok) {
 				const token = loginData.body.token;
 				dispatch(setToken(token));
+				localStorage.setItem('token', token);
 				setIsAuthenticated(true);
 
 				// Deuxième requête : Obtenir le profil
@@ -62,14 +64,21 @@ const SignIn: React.FC = () => {
 		}
 	};
 	useEffect(() => {
-		if (token && isAuthenticated) {
-			console.log('Token correct, je vais sur /profile');
-			console.log('isAuthenticated', isAuthenticated);
+		const token = localStorage.getItem('token');
+		if (token) {
+			dispatch(setToken(token));
 			navigate('/profile');
-		} else {
-			console.log('Pas de token, je reste sur la page');
 		}
-	}, [isAuthenticated, token, navigate]);
+	}, [dispatch, navigate]);
+	// useEffect(() => {
+	// 	if (token && isAuthenticated) {
+	// 		console.log('Token correct, je vais sur /profile');
+	// 		console.log('isAuthenticated', isAuthenticated);
+	// 		navigate('/profile');
+	// 	} else {
+	// 		console.log('Pas de token, je reste sur la page');
+	// 	}
+	// }, [isAuthenticated, token, navigate]);
 	return (
 		<main className="main bg-dark">
 			<section className="sign-in-content">
