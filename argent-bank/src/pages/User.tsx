@@ -21,7 +21,7 @@ const User: React.FC = () => {
 				const token = localStorage.getItem('token');
 				if (!token) {
 					// Rediriger vers la page de connexion si pas de token
-					// navigate('/login');
+					navigate('/login');
 					return;
 				}
 
