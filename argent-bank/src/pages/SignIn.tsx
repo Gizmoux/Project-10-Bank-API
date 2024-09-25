@@ -58,6 +58,10 @@ const SignIn: React.FC = () => {
 				}
 
 				navigate('/profile');
+			} else {
+				alert(
+					"Cet utilisateur n'est pas enregistré, veuillez créer votre profile utilisateur"
+				);
 			}
 		} catch (error) {
 			console.error('error', error);
